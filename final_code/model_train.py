@@ -97,9 +97,6 @@ def q_learning_v2(num_episodes, ratings, gen_scores):
 
     for i in tqdm(range(num_episodes)):
 
-
-
-
         # reset environment and variables before each episode
         observation = ratings.sample(n=1)
         while observation['rating'].values[0] < 4.5:
