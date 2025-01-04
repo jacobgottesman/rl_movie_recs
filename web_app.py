@@ -2,7 +2,7 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import pickle
-from utils.model_utils import get_recomendations
+from utils.result_utils import get_recomendations
 
 st.set_page_config(layout='wide')
 
