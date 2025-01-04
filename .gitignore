@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+data/ratings.csv
+data/genome-scores.csv
+data/new_policy4.csv
+data/newqtable4.csv
+data/rewards4.csv
