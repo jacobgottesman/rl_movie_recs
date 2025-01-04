@@ -3,10 +3,6 @@ import numpy as np
 from tqdm import tqdm
 from scipy.special import softmax
 
-# reading in needed csv files
-gen_scores = pd.read_csv('genome-scores.csv')
-ratings = pd.read_csv('ratings.csv')
-
 
 def set_up_ratings(ratings, min_move=1000, min_use=50):
     ''' function for limiting the  movies that are being analyzed
@@ -41,12 +37,6 @@ def set_up_ratings(ratings, min_move=1000, min_use=50):
     ratings['movieId'] = ratings['movieId'].map(movie_dict)
 
     return ratings, movie_dict
-
-# limiting data
-ratings, movie_dict = set_up_ratings(ratings, min_move = 2000)
-
-# print how many movies are being considers
-print('toal movies being considered:', len(set(ratings['movieId'])))
 
 
 def calculate_similarity(list1, list2):
@@ -191,10 +181,10 @@ def q_learning_v2(num_episodes, ratings, gen_scores):
 
     return Q, optimal_policy, avg_rewards, step_list
 
-gen_scores['movieId'] = gen_scores['movieId'].apply(lambda i: movie_dict.get(i, -1))
-q, opt, rewards, steps = q_learning_v2(5000, ratings, gen_scores)
+def get_recomendations(Q, movies, movie_list, num_recs = 5):
+    # get recomendations for any number of input movies
 
-pd.DataFrame(q).to_csv('newqtable4.csv')
-pd.DataFrame(opt).to_csv('new_policy4.csv')
-pd.DataFrame(np.array(rewards)).to_csv('rewards4.csv')
-pd.DataFrame(np.array(steps)).to_csv('steps4.csv')
+    user_movs = Q[movie_list,:]
+    rec_indexes = np.argpartition(-np.sum(user_movs, axis=0), kth=(num_recs+len(movie_list)))[:num_recs+len(movie_list)]
+    movie_recs =  [rec for rec, id in movies.items() if id[0] in rec_indexes]
+    return movie_recs[:num_recs]
