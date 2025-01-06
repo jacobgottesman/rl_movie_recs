@@ -8,9 +8,9 @@ Read the final report from this project in this [doc](https://docs.google.com/do
 
 Important files in this repo
 
-- train_via_q_learning.ipynb contains a script for retraining the model
-- project_viz.ipynb creates all visualiztions used in the report
-- web_app.py creates the streamlit web app
-- utils/model_utils.py contains the custom function for q-learning in this problem
+- `train_via_q_learning.ipynb` contains a script for retraining the model
+- `project_viz.ipynb` creates all visualiztions used in the report
+- `web_app.py` creates the streamlit web app
+- `utils/model_utils.py` contains the custom function for q-learning in this problem
 
 direct all questions to me at jacobgottesman1@gmail.com
